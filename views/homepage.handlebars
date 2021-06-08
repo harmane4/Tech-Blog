@@ -1,4 +1,4 @@
-1. Shows existing blog posts
+{{!-- 1. Shows existing blog posts as list
  - includes post title and date created 
 
  2. Click on a blog post presented with 
@@ -12,4 +12,14 @@
  - comment is saved and post is updated to display 
         - comment 
         - comment creator's username 
-        - date created 
+        - date created  --}}
+
+
+{{!-- Show all blog posts in list  --}}
+<ul>
+       <li>
+       {{#each posts as |post|}}
+       {{>post-details}}
+       {{/each}}
+       </li>
+</ul>

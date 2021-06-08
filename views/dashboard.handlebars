@@ -1,4 +1,4 @@
-Presnted with any blog posts that I have already created and option to add new blog post 
+{{!-- Presnted with any blog posts that I have already created and option to add new blog post 
 
 1. Click on add new blog post 
  - promted to enter: 
@@ -7,4 +7,27 @@ Presnted with any blog posts that I have already created and option to add new b
 2. When click to create a new blog post title and content are saved.
 Taken back to updated dashboard with new blog posts 
 
-3. Click on exsisting post in dashboard and you are able to delete or update post
+3. Click on exsisting post in dashboard and you are able to delete or update post --}}
+
+
+{{!-- Show all blog posts in a list --}}
+<ul>
+        <li>
+                {{#each posts as |post|}}
+                {{>post-details}}
+                {{/each}}
+        </li>
+</ul>
+
+{{!-- Add a new post --}}
+<h2>New Post</h2>
+<form class="form newPost-form">
+        <label for="username">Title</label>
+        <input type="text" id="newPostTitle" />
+        <label for="password">Content</label>
+        <input type="text" id="newPostContent" />
+        <button type="submit">Create</button>
+</form>
+
+
+<script src="./js/createPost.js"></script>

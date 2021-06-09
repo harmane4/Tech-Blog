@@ -1,12 +1,14 @@
 // Dependencies
 const express = require("express");
 const exphbs = require("express-handlebars");
-const session = require("express-session");
+const sessionMiddleware = require("express-session");
 const path = require("path");
 const expressHandlebars = exphbs.create({});
 
 // Stores all session data once user is signed in
-const SequelizeStore = require("connect-session-sequelize")(session.Store);
+const SequelizeStore = require("connect-session-sequelize")(
+  sessionMiddleware.Store
+);
 
 const routes = require("./controllers");
 const sequelize = require("./config/connection");
@@ -16,8 +18,8 @@ const app = express();
 const PORT = process.env.PORT || 3001;
 
 // Used to store session data
-const sess = {
-  secret: "Super secret secret", // Key to the session
+const sessionMiddlewareConfiguration = {
+  secret: process.env.SECRET, // Key to the session
   cookie: {},
   resave: false,
   saveUninitialized: true,
@@ -26,7 +28,7 @@ const sess = {
   }),
 };
 
-app.use(session(sess));
+app.use(sessionMiddleware(sessionMiddlewareConfiguration));
 
 //Register template engine with express
 app.engine("handlebars", expressHandlebars.engine);

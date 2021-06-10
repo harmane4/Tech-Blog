@@ -10,7 +10,13 @@ router.get("/", async (request, response) => {
         { model: User, attributes: ["username"] },
         {
           model: Comment,
-          attributes: ["id", "comment_content", "user_id", "created_at"],
+          attributes: [
+            "id",
+            "comment_content",
+            "user_id",
+            "post_id",
+            "created_at",
+          ],
           include: { model: User, attributes: ["username"] },
         },
       ],
@@ -21,7 +27,7 @@ router.get("/", async (request, response) => {
     // Renders response to the homepage template users the posts array if they are logged in
     response.render("homepage", {
       posts,
-      logged_in: request.session.loggedIn,
+      loggedIn: request.session.loggedIn,
     });
   } catch (err) {
     response.status(500).json(err);

@@ -18,7 +18,7 @@ router.post("/", async (request, response) => {
   // create a new category
   try {
     const commentData = await Comment.create({
-      content: request.body.content,
+      comment_content: request.body.comment_content,
       user_id: request.session.user_id,
       post_id: request.body.post_id,
     });

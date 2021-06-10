@@ -3,6 +3,19 @@ const session = require("express-session");
 const SequelizeStore = require("connect-session-sequelize")(session.Store);
 const { User } = require("../../models");
 
+// Get all users
+router.get("/", async (request, response) => {
+  try {
+    const userData = await User.findAll({
+      attributes: { exclude: ["password"] },
+    });
+    response.status(200).json(userData);
+  } catch (err) {
+    console.log(err);
+    response.status(500).json(err);
+  }
+});
+
 // Create a new user
 router.post("/", async (request, response) => {
   try {

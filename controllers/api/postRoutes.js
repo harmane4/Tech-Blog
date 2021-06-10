@@ -1,11 +1,24 @@
 const router = require("express").Router();
-const { Post } = require("../../models");
+const { Post, Comment, User } = require("../../models");
 
 // View all posts in ascending order by name
 router.get("/", async (request, response) => {
   try {
     const postData = await Post.findAll({
-      order: [["name", "ASC"]],
+      include: [
+        { model: User, attributes: ["username"] },
+        {
+          model: Comment,
+          attributes: [
+            "id",
+            "comment_content",
+            "user_id",
+            "post_id",
+            "created_at",
+          ],
+          include: { model: User, attributes: ["username"] },
+        },
+      ],
     });
     response.status(200).json(postData);
   } catch (error) {

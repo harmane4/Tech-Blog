@@ -1,4 +1,6 @@
 const router = require("express").Router();
+const session = require("express-session");
+const SequelizeStore = require("connect-session-sequelize")(session.Store);
 const { User } = require("../../models");
 
 // Create a new user

@@ -2,9 +2,14 @@ const { Comment } = require("../models");
 
 const commentData = [
   {
-    content: "Handlebars is great, 10/10 rating",
+    comment_content: "Handlebars is great, 10/10 rating",
     user_id: 1,
     post_id: 1,
+  },
+  {
+    comment_content: "test test",
+    user_id: 2,
+    post_id: 2,
   },
 ];
 

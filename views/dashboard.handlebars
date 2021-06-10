@@ -11,13 +11,10 @@ Taken back to updated dashboard with new blog posts
 
 
 {{!-- Show all blog posts in a list --}}
-<ul>
-        <li>
+
                 {{#each posts as |post|}}
                 {{>post-details}}
                 {{/each}}
-        </li>
-</ul>
 
 {{!-- Add a new post --}}
 <h2>New Post</h2>
@@ -30,4 +27,4 @@ Taken back to updated dashboard with new blog posts
 </form>
 
 
-<script src="./js/createPost.js"></script>
+{{!-- <script src="./js/createPost.js"></script> --}}

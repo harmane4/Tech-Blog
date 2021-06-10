@@ -1,31 +1,44 @@
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=T, initial-scale=1.0" />
-    <title>Tech Blog</title>
-    <link rel="stylesheet" type="text/css" href="/css/style.css" />
-  </head>
 
-  <body>
-    <header>The Tech Blog</header>
-    <nav>
-      <a href="/">Home</a>
-      <!-- If the user is logged in, show a logout button -->
-      {{#if loggedIn}}
-        <button id="logout" class="btn-no-style">Logout</button>
-      {{else}}
-        <!-- Otherwise, show a link to login -->
-        <a href="/login">Login</a>
-      {{/if}}
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tech Blog</title>
+  <link rel="stylesheet" type="text/css" href="/css/style.css">
+</head>
 
-      <a href="/dashboard">Dashboard</a>
-    </nav>
-    <main>{{{body}}}</main>
-
+<body>
+  <header>
+    <h1>Welcome to the Tech Blog</h1>
+  </header>
+  <nav>
+    <a href="/">Home</a>
     {{#if loggedIn}}
-      <script src="/js/logout.js"></script>
+    <a href="/dashboard">Dashboard</a>
+    <button id="logout" class="btn">Logout</button>
+    {{else}}
+    <a href="/login">Login</a>
     {{/if}}
+  </nav>
+  <main>
+      <h2>Read Everyone's Blog posts</h2>
+      {{{body}}}
+  </main>
+  {{#if loggedIn}}
+  <script src="/js/logout.js"></script>
+  {{/if}}
+</body>
 
-  </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+

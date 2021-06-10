@@ -8,7 +8,7 @@ router.post("/", async (request, response) => {
       username: request.body.username,
       password: request.body.password,
     });
-
+    // Log user in and save their session id
     request.session.save(() => {
       request.session.loggedIn = true;
 
@@ -25,7 +25,7 @@ router.post("/login", async (request, response) => {
   try {
     const userData = await User.findOne({
       where: {
-        email: request.body.username,
+        username: request.body.username,
       },
     });
 

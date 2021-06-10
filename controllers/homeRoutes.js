@@ -1,15 +1,22 @@
 const router = require("express").Router();
-const { Post } = require("../models");
+const { Post, User, Comment } = require("../models");
 
 // Home page shows all blog posts
 router.get("/", async (request, response) => {
   try {
     const postData = await Post.findAll({
-      attributes: [["title", "content", "created_at"]],
+      attributes: ["id", "title", "content", "created_at"],
+      include: [
+        { model: User, attributes: ["username"] },
+        {
+          model: Comment,
+          attributes: ["id", "comment_content", "user_id", "created_at"],
+          include: { model: User, attributes: ["username"] },
+        },
+      ],
     });
 
     const posts = postData.map((project) => project.get({ plain: true }));
-    console.log("post", posts);
 
     // Renders response to the homepage template users the posts array if they are logged in
     response.render("homepage", {

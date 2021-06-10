@@ -1,28 +1,30 @@
 const router = require("express").Router();
 const { Post } = require("../models");
-const withAuth = require("../utils/auth");
 
 // Home page shows all blog posts
-router.get("/", withAuth, async (request, response) => {
+router.get("/", async (request, response) => {
   try {
     const postData = await Post.findAll({
       attributes: [["title", "content", "created_at"]],
     });
 
     const posts = postData.map((project) => project.get({ plain: true }));
+    console.log("post", posts);
 
+    // Renders response to the homepage template users the posts array if they are logged in
     response.render("homepage", {
       posts,
-      logged_in: request.session.logged_in,
+      logged_in: request.session.loggedIn,
     });
   } catch (err) {
     response.status(500).json(err);
+    console.log("error", err);
   }
 });
 
 // Login page
 router.get("/login", (request, response) => {
-  if (request.session.logged_in) {
+  if (request.session.loggedIn) {
     response.redirect("/");
     return;
   }
@@ -32,7 +34,7 @@ router.get("/login", (request, response) => {
 
 // Sign up page
 router.get("/signup", (request, response) => {
-  if (request.session.logged_in) {
+  if (request.session.loggedIn) {
     response.redirect("/");
     return;
   }

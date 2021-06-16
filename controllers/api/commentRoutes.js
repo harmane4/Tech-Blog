@@ -4,9 +4,7 @@ const { Comment } = require("../../models");
 // View all comments in ascending order by name
 router.get("/", async (request, response) => {
   try {
-    const commentData = await Comment.findAll({
-      order: [["name", "ASC"]],
-    });
+    const commentData = await Comment.findAll();
     response.status(200).json(commentData);
   } catch (error) {
     response.status(500).json(error);
@@ -15,7 +13,6 @@ router.get("/", async (request, response) => {
 
 // Add a comment
 router.post("/", async (request, response) => {
-  // create a new category
   try {
     const commentData = await Comment.create({
       comment_content: request.body.comment_content,

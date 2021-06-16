@@ -20,3 +20,14 @@
        {{#each posts as |post|}}
        {{>post-details post}}
        {{/each}}
+
+<h2>New Post</h2>
+<form class="form newPost-form">
+       <label for="newPostTitle">Title</label>
+       <input type="text" name="newPostTitle" id="newPostTitle" />
+       <label for="newPostContent">Content</label>
+       <input type="text" name="newPostContent" id="newPostContent" />
+       <button type="submit">Create</button>
+</form>
+
+<script src="/js/createPost.js"></script>

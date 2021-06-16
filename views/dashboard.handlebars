@@ -9,22 +9,28 @@ Taken back to updated dashboard with new blog posts
 
 3. Click on exsisting post in dashboard and you are able to delete or update post --}}
 
-
-{{!-- Show all blog posts in a list --}}
-
-                {{#each posts as |post|}}
-                {{>post-details}}
-                {{/each}}
+        
 
 {{!-- Add a new post --}}
 <h2>New Post</h2>
 <form class="form newPost-form">
-        <label for="username">Title</label>
-        <input type="text" id="newPostTitle" />
-        <label for="password">Content</label>
-        <input type="text" id="newPostContent" />
+        <label for="newPostTitle">Title</label>
+        <input type="text" name="newPostTitle" id="newPostTitle" />
+        <label for="newPostContent">Content</label>
+        <input type="text" name="newPostContent" id="newPostContent" />
         <button type="submit">Create</button>
 </form>
 
+{{#if posts.length}}
+<section>
+        <ol>
+        {{#each posts as |post|}}
+        <li>
+         {{> post-details post}}
+        </li>
+        {{/each}}
+        </ol>
+</section>
+{{/if}}
 
-{{!-- <script src="./js/createPost.js"></script> --}}
+<script defer src="/js/createPost.js"></script>

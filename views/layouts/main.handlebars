@@ -13,8 +13,8 @@
     <h1>Welcome to the Tech Blog</h1>
   </header>
   <nav>
-    <a href="/">Home</a>
     {{#if loggedIn}}
+      <a href="/">Home</a>
     <a href="/dashboard">Dashboard</a>
     <button id="logout" class="btn">Logout</button>
     {{else}}
@@ -22,7 +22,6 @@
     {{/if}}
   </nav>
   <main>
-      <h2>Read Everyone's Blog posts</h2>
       {{{body}}}
   </main>
   {{#if loggedIn}}

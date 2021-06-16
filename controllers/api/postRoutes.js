@@ -1,10 +1,13 @@
 const router = require("express").Router();
+const { request } = require("express");
+const sequelize = require("../../config/connection");
 const { Post, Comment, User } = require("../../models");
 
-// View all posts in ascending order by name
+// View all posts
 router.get("/", async (request, response) => {
   try {
     const postData = await Post.findAll({
+      attributes: ["id", "title", "content", "created_at"],
       include: [
         { model: User, attributes: ["username"] },
         {
@@ -26,19 +29,31 @@ router.get("/", async (request, response) => {
   }
 });
 
+// Get a single post by id
+// router.get("/id", (request, response) => {
+//   try {
+//     const postData = await Post.findOne({
+//     where: {
+//     id: request.params.id
+//     },
+//     attributes: ["id", "title", "content", "create_at"],
+//     include: [{
+//       model: User, attributes: ["username"]
+//     }, {
+//       model: Comment,
+//     }
+
 // Add a post
 router.post("/", async (request, response) => {
+  console.log("session", request.session);
   try {
     const postData = await Post.create({
       title: request.body.title,
       content: request.body.content,
+      user_id: request.session.user_id,
     });
 
-    request.session.save(() => {
-      request.session.loggedIn = true;
-
-      response.status(200).json(postData);
-    });
+    response.status(200).json(postData);
   } catch (err) {
     console.log(err);
     response.status(500).json(err);

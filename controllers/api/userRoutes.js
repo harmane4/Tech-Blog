@@ -25,6 +25,8 @@ router.post("/", async (request, response) => {
     });
     // Log user in and save their session id
     request.session.save(() => {
+      console.log("userData", userData);
+      request.body.user_id = userData.id;
       request.session.loggedIn = true;
 
       response.status(200).json(userData);
@@ -61,6 +63,7 @@ router.post("/login", async (request, response) => {
     }
 
     request.session.save(() => {
+      request.session.user_id = userData.id;
       request.session.loggedIn = true;
 
       response

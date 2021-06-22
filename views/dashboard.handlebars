@@ -12,25 +12,24 @@ Taken back to updated dashboard with new blog posts
         
 
 {{!-- Add a new post --}}
-<h2>New Post</h2>
-<form class="form newPost-form">
-        <label for="newPostTitle">Title</label>
-        <input type="text" name="newPostTitle" id="newPostTitle" />
-        <label for="newPostContent">Content</label>
-        <input type="text" name="newPostContent" id="newPostContent" />
-        <button type="submit">Create</button>
-</form>
+<div class="box">
+        <h2 class="is-size-4 has-text-centered" >New Post</h2>
+        <form class="form newPost-form">
+                <label for="newPostTitle">Title</label>
+                <input class="input" type="text" name="newPostTitle" id="newPostTitle" />
+                <label for="newPostContent">Content</label>
+                <input class="input" type="text" name="newPostContent" id="newPostContent" />
+                <button class="button" type="submit">Create</button>
+        </form>
+</div>
+
 
 {{#if posts.length}}
-<section>
-        <ol>
-        {{#each posts as |post|}}
-        <li>
-         {{> post-details post}}
-        </li>
-        {{/each}}
-        </ol>
-</section>
+<div class="box">
+        <p>{{#each posts as |post|}}
+                {{>post-details post}}
+                {{/each}}</p>
+</div>
 {{/if}}
 
 <script defer src="/js/createPost.js"></script>

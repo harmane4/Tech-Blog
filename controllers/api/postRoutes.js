@@ -1,7 +1,7 @@
 const router = require("express").Router();
-const { request } = require("express");
 const sequelize = require("../../config/connection");
 const { Post, Comment, User } = require("../../models");
+const chalk = require("chalk");
 
 // View all posts
 router.get("/", async (request, response) => {
@@ -45,7 +45,7 @@ router.get("/", async (request, response) => {
 
 // Add a post
 router.post("/", async (request, response) => {
-  console.log("session", request.session);
+  console.log(chalk.red("session", request.session));
   try {
     const postData = await Post.create({
       title: request.body.title,

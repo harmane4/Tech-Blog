@@ -2,6 +2,7 @@ const router = require("express").Router();
 const session = require("express-session");
 const SequelizeStore = require("connect-session-sequelize")(session.Store);
 const { User } = require("../../models");
+const chalk = require("chalk");
 
 // Get all users
 router.get("/", async (request, response) => {
@@ -25,8 +26,9 @@ router.post("/", async (request, response) => {
     });
     // Log user in and save their session id
     request.session.save(() => {
-      console.log("userData", userData);
-      request.body.user_id = userData.id;
+      console.log(chalk.green("userData", userData));
+      request.session.user_id = userData.id;
+      request.session.username = userData.username;
       request.session.loggedIn = true;
 
       response.status(200).json(userData);
@@ -64,6 +66,7 @@ router.post("/login", async (request, response) => {
 
     request.session.save(() => {
       request.session.user_id = userData.id;
+      request.session.username = userData.username;
       request.session.loggedIn = true;
 
       response

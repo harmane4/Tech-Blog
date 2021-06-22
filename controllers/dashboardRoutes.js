@@ -2,6 +2,7 @@ const router = require("express").Router();
 const sequelize = require("../config/connection");
 const { Post, Comment, User } = require("../models");
 const withAuth = require("../utils/auth");
+const chalk = require("chalk");
 
 // View all posts by a user_id from the current session only if logged in
 router.get("/", withAuth, async (request, response) => {
@@ -19,8 +20,9 @@ router.get("/", withAuth, async (request, response) => {
         { model: User, attributes: ["username"] },
       ],
     });
-    console.log("postdata", postData);
+    console.log(chalk.blue("postdata", postData));
     const posts = postData.map((project) => project.get({ plain: true }));
+    console.log(chalk.red("posts", posts));
 
     response.render("dashboard", { posts, loggedIn: request.session.loggedIn });
   } catch (error) {

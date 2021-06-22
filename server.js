@@ -4,6 +4,7 @@ const exphbs = require("express-handlebars");
 const sessionMiddleware = require("express-session");
 const path = require("path");
 const expressHandlebars = exphbs.create({});
+const chalk = require("chalk");
 
 // Stores all session data once user is signed in
 const SequelizeStore = require("connect-session-sequelize")(

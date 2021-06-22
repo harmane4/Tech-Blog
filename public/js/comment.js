@@ -1,7 +1,9 @@
-const postFormHandler = async (event) => {
+const commentHandler = async (event) => {
   event.preventDefault();
 
-  const title = document.querySelector("input[name='newPostTitle']").value;
+  const comment_content = document.querySelector(
+    "input[name='newPostTitle']"
+  ).value;
   console.log("title", title);
   const content = document.querySelector('input[name="newPostContent"]').value;
 
@@ -20,4 +22,4 @@ const postFormHandler = async (event) => {
 
 document
   .querySelector(".newPost-form")
-  .addEventListener("submit", postFormHandler);
+  .addEventListener("submit", commentHandler);

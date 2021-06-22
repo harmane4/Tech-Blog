@@ -16,8 +16,10 @@
 
 
 {{!-- Show all blog posts in list  --}}
-
-       {{#each posts as |post|}}
-       {{>post-details post}}
-       {{/each}}
+       <div class="box">
+              <p>{{#each posts as |post|}}
+              {{>post-details post}}
+              {{/each}}</p>
+      </div>
+      
 

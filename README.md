@@ -39,7 +39,13 @@ npm start
 
 The deployed application can be viewed here: [Tech Blog](http://arcane-badlands-76219.herokuapp.com/)
 
-### Resources
+When the user is first directed to the Tech Blog they will see this image
+![Tech Blog Home Page](public/images/TechBlog.png)
+
+If they try and click on the dashboard without being signed in they will be redirected to the login page
+![Tech Blog Log In](public/images/Login.png)
+
+## Resources
 
 - [Fetch](https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch)
 

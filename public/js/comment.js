@@ -1,15 +1,14 @@
 const commentHandler = async (event) => {
   event.preventDefault();
 
+  // Need a const for the comment_content
   const comment_content = document.querySelector(
     "input[name='newPostTitle']"
   ).value;
-  console.log("title", title);
-  const content = document.querySelector('input[name="newPostContent"]').value;
 
   const response = await fetch("/api/posts", {
     method: "POST",
-    body: JSON.stringify({ title, content }),
+    body: JSON.stringify({ comment_content }),
     headers: { "Content-Type": "application/json" },
   });
 

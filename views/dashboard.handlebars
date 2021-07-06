@@ -28,6 +28,7 @@ Taken back to updated dashboard with new blog posts
 <div class="box">
         <p>{{#each posts as |post|}}
                 {{>post-details post}}
+                <a href="/dashboard/post/{{post.id}}">Edit Post</a>
                 {{/each}}</p>
 </div>
 {{/if}}

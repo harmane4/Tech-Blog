@@ -30,4 +30,46 @@ router.get("/", withAuth, async (request, response) => {
   }
 });
 
+router.get("/post", withAuth, async (request, response) => {
+  try {
+    response.render("edit-post", { loggedIn: request.session.loggedIn });
+  } catch (error) {
+    console.log(error);
+    response.status(500).json(error.message);
+  }
+});
+
+// View & edit a single post
+router.get("/post/:id", withAuth, async (request, response) => {
+  try {
+    const postData = await Post.findOne({
+      where: {
+        id: request.params.id,
+      },
+      attributes: ["id", "title", "content"],
+      include: [
+        {
+          model: Comment,
+          attribute: ["id", "comment_content"],
+          include: {
+            model: User,
+            attributes: ["username"],
+          },
+        },
+        {
+          model: User,
+          attributes: ["username"],
+        },
+      ],
+    });
+    response.render("edit-post", {
+      postData,
+      loggedIn: request.session.loggedIn,
+    });
+  } catch (error) {
+    console.log("error", error);
+    response.status(500).json(error);
+  }
+});
+
 module.exports = router;

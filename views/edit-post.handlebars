@@ -1,0 +1,31 @@
+{{!-- Click on an exsisting blog post and presented with title, contents, creator's name, date created and option to leave
+a comment.
+ Need an a tag for when add comment is added which will then bring out an input box & add comment button
+Once add comment button is clicked the comment is added to the post
+The comment also has the comment creator's name and date that the comment was created --}}
+
+
+<a href="/post/{{id}}"></a>
+
+{{!-- Add a new post --}}
+<div class="box">
+    <h2 class="is-size-4 has-text-centered">Edit Post</h2>
+    <form class="form edit-post-form">
+        <label for="newPostTitle">{{post.title}}</label>
+        <input class="input" type="text" name="newPostTitle" id="newPostTitle" />
+        <label for="newPostContent">Content</label>
+        <input class="input" type="text" name="newPostContent" id="newPostContent" />
+        <button class="button" type="submit">Update Post</button>
+    </form>
+</div>
+
+{{#if posts.length}}
+<div class="box">
+    <p>{{#each posts as |post|}}
+        {{>post-details post}}
+        {{/each}}</p>
+</div>
+{{/if}}
+
+
+<script defer src="/js/edit-post.js"></script>

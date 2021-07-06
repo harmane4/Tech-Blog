@@ -37,6 +37,36 @@ router.get("/", async (request, response) => {
   }
 });
 
+// View & edit a single post
+router.get("/post/:id", async (request, response) => {
+  try {
+    const postData = await Post.findOne({
+      where: {
+        id: request.params.id,
+      },
+      attributes: ["id", "title", "content"],
+      include: [
+        {
+          model: Comment,
+          attribute: ["id", "comment_content"],
+          include: {
+            model: User,
+            attributes: ["username"],
+          },
+        },
+        {
+          model: User,
+          attributes: ["username"],
+        },
+      ],
+    });
+    const posts = postData.map((project) => project.get({ plain: true }));
+    response.render("edit-post", { posts, loggedIn: request.session.loggedIn });
+  } catch (error) {
+    response.status(500).json(error);
+  }
+});
+
 // Login page
 router.get("/login", (request, response) => {
   if (request.session.loggedIn) {

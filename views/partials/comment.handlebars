@@ -1,2 +1,20 @@
 
+{{!-- Form of adding the comment --}}
+
+{{if loggedIn}}
+<div class="box">
+    <h2 class="is-size-4 has-text-centered">Add a comment</h2>
+    <form class="form newComment-form">
+        <label for="newComment">Comment</label>
+        <input class="input" type="text" name="newComment" id="newComment" />
+        <button class="button" type="submit">Add comment</button>
+    </form>
+</div>
+{{/if}}
+
+
+
 <p>{{comment_content}}</p>
+
+
+<script defer src="/js/comment.js"></script>
